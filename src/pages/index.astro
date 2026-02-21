@@ -1,0 +1,40 @@
+---
+// Server Only
+import Navbar from '../components/Navbar.astro';
+
+const name = 'Isaac Vega'
+const title = 'IV - Home Page'
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Navbar />
+		<h1>{name}</h1>
+		<p> { new Date().toLocaleTimeString() } </p>
+		<p id ="current-id"> </p>
+
+		<footer>
+		</footer>
+
+		<script>
+			// Client Only
+			const footer = document.querySelector('footer') as HTMLElement;
+			const p = document.querySelector('#current-id') as HTMLParagraphElement;
+
+			const currentYear: number = new Date().getFullYear();
+			const currentTime: string = new Date().toLocaleTimeString();
+
+			footer.innerText = `Current year: ${ currentYear }`;  
+			p.innerText = `Real time now: ${ currentTime }`;  
+		</script>
+	</body>
+</html>
+
