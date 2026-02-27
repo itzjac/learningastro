@@ -1,24 +1,14 @@
 ---
 // Server Only
-import Navbar from '../components/Navbar.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 
 const name = 'Isaac Vega'
 const title = 'IV - Home Page'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<Navbar />
-		<h1>{name}</h1>
-		<p> { new Date().toLocaleTimeString() } </p>
+<MainLayout title ="Home">
+	<p> Page HOME, wrapped in layout!</p>
+	<p> { new Date().toLocaleTimeString() } </p>
 		<p id ="current-id"> </p>
 
 		<footer>
@@ -35,6 +25,4 @@ const title = 'IV - Home Page'
 			footer.innerText = `Current year: ${ currentYear }`;  
 			p.innerText = `Real time now: ${ currentTime }`;  
 		</script>
-	</body>
-</html>
-
+</MainLayout>
