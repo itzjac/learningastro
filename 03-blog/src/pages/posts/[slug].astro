@@ -28,6 +28,8 @@ const { Content, headings } = await post.render();
     alt={frontmatter.title}
     width={600}
     height={220}
+    class="object-cover w-full h-[250px] rounded-md"
+    transition:name={`${post.slug}-image`}
     />
     <!-- Content table -->
      <h3>Table</h3>
