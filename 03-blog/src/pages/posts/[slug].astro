@@ -2,8 +2,11 @@
 import { Image } from "astro:assets";
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
-import TypeBlogPost from "src/components/TypeBlogPost.astro";
+//import TypeBlogPost from "src/components/TypeBlogPost.astro";
 import BlogLayout from "src/layouts/BlogLayout.astro";
+import { getEntries } from "astro:content";
+import { getEntry } from "astro:content";
+import { Formatter } from "@utils/formatter";
 
 export const getStaticPaths = (async () => {
     const blogPosts = await getCollection('blog');
@@ -17,12 +20,11 @@ const { post } = Astro.props;
 const frontmatter = post.data;
 
 const { Content, headings } = await post.render();
+const author = (await getEntry('author', post.data.author.id)).data;
 ---
 
 <BlogLayout title={frontmatter.title}>
-    <h1 class="text-xs text-gray-500 mb-0"> {frontmatter.title}</h1>
-    <h4 class="text-md text-gray-400 mb-0"> {frontmatter.author}</h4>
-
+    <h1 class="text-6xl text-gray-300 mb-4"> {frontmatter.title}</h1>
     <Image 
     src={frontmatter.image}
     alt={frontmatter.title}
@@ -31,9 +33,25 @@ const { Content, headings } = await post.render();
     class="object-cover w-full h-[250px] rounded-md"
     transition:name={`${post.slug}-image`}
     />
+    <!-- <h4 class="text-4xl text-gray-600 mb-4 text-right"> By {frontmatter.author}</h4> -->
+     <div class="text-md text-gray-400 mb-0 flex flex-row mt-2">
+        <Image 
+        class="rounded-full"
+        src={author.avatar}
+        alt={author.name}
+        width={50}
+        height={50}
+        />
+        <div class="flex flex-col ml-5">
+           <a href={ `/blog/${ frontmatter.author.id }` }> { author.name }</a>
+           <span class="text-xs text-gray-200">
+               {Formatter.formatDate(frontmatter.date)}
+           </span>
+        </div>
+     </div>
     <!-- Content table -->
-     <h3>Table</h3>
-     <ol>
+     <h3 class="text-5xl text-white mt-5 mb-5">Table</h3>
+     <ol class="text-3xl text-yellow-700 mt-6 mb-5">
         {
             headings.map((heading, index) => (
                 <li>
@@ -45,7 +63,7 @@ const { Content, headings } = await post.render();
         }
      </ol>
     <Content />
-    <div class="my-20">
+    <div class="my-20 text-5xl text-gray-400">
         <a href="#btn-back"> Up </a>
     </div>
 </BlogLayout>
