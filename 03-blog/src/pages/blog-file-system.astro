@@ -1,0 +1,24 @@
+---
+import BlogPost from "../components/BlogPost.astro"
+
+import MainLayout from "../layouts/MainLayout.astro"
+import { siteConfig } from "../styles/config/side-config"
+
+const posts = await import.meta.glob('./posts/*.{md,mdx}');
+const postList = Object.values(posts);
+---
+
+<MainLayout title="Blog">
+<section class="bg-white dark:bg-gray-900">
+    <div class="container px-6 py-10 mx-auto">
+        <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">{siteConfig.title}</h1>
+
+        <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+            {
+                postList.map( (post) => <BlogPost {...post}/>)
+            }
+        </div>
+    </div>
+</section>
+
+</MainLayout>
