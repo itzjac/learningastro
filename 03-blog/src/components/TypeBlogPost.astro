@@ -11,9 +11,9 @@ const { post } = Astro.props;
 const frontmatter = post.data;
 ---
 
-<div class="lg:flex">
+<div class="flex flex-col">
     <Image
-        class="öbject-cover w-full h-56 rounded-lg lg:w-64"
+        class="object-cover w-full h-56 rounded-lg"
         src={frontmatter.image}
         alt={frontmatter.title}
         width={500}
@@ -23,14 +23,12 @@ const frontmatter = post.data;
         transition:name={`${post.slug}-image`}
     />
 
-    <div class="flex flex-col justify-between py-6 lg:mx-6">
-        <a href={`/posts/${post.slug}`} class="text-4xl front-semibold hover:underline text-white">
+    <div class="flex flex-col gap-1 py-4">
+        <a href={`/posts/${post.slug}`} class="text-xl font-semibold hover:underline text-white">
             { frontmatter.description }
         </a>
+        <span class="text-sm text-gray-300">{Formatter.formatDate(frontmatter.date)}</span>
     </div>
-
-    <span class="text-sm text-gray-300"
-    > {Formatter.formatDate(frontmatter.date)}</span>
 </div>
 
 
