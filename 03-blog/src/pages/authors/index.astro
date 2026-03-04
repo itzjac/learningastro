@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import AuthorLayout from "src/layouts/AuthorLayout.astro";
+import MainLayout from "src/layouts/MainLayout.astro";
+
+const authors = await getCollection('author');
+---
+
+<MainLayout>
+    <h1 class="text-white text-8xl">Authors</h1>
+    <div class="mx-auto grid grid-cols-1 gap-2 mt-8 md:mt-16 md:grid-cols-2">
+        {authors.map((author) => <AuthorLayout author={author}> </AuthorLayout>)}
+    </div>
+    
+</MainLayout>
