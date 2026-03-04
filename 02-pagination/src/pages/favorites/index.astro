@@ -3,10 +3,12 @@ import MainLayout from "src/layouts/MainLayout.astro";
 import NavBar from "@components/shared/NavBar.astro";
 import Title from "@components/shared/Title.astro";
 import { Counter } from "@components/shared/Counter";
+import { FavoritePokemons } from "@components/pokemons/FavoritePokemons";
 
 ---
 
 <MainLayout title="favorites">
     <Title>Favorites</Title>
-    <Counter client:load/>
+    <!-- <Counter client:load/> -->
+    <FavoritePokemons client:only="solid-js"}/>
 </MainLayout>

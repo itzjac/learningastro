@@ -56,17 +56,14 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
 </MainLayout>
 
 <script>
-interface FavoritePokemnon {
-    name: string;
-    id: number;
-}
+import type { FavoritePokemon } from '../../interfaces/favorite-pokemon';
 
 document.addEventListener('astro:page-load', () => {
     console.log("poke");
 });
 
 document.addEventListener('astro:page-load', () => {
-    let favoritePokemons: FavoritePokemnon[] = JSON.parse(localStorage.getItem("favorites") ?? '[]');
+    let favoritePokemons: FavoritePokemon[] = JSON.parse(localStorage.getItem("favorites") ?? '[]');
     const btnFavorite = document.querySelector('#btn-favorite') as
     HTMLButtonElement;
 
