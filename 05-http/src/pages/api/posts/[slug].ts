@@ -29,7 +29,7 @@ export const POST: APIRoute = async ( { params, request }) => {
     const body = await request.json();
 
     return new Response(JSON.stringify({
-        mothod: 'POST',
+        method: 'POST',
         ...body
 
     }), {
@@ -44,7 +44,7 @@ export const PUT: APIRoute = async ( { params, request }) => {
     const body = await request.json();
 
     return new Response(JSON.stringify({
-        mothod: 'PUT',
+        method: 'PUT',
         ...body
 
     }), {
@@ -59,7 +59,7 @@ export const PATCH: APIRoute = async ( { params, request }) => {
     const body = await request.json();
 
     return new Response(JSON.stringify({
-        mothod: 'PATCH',
+        method: 'PATCH',
         ...body
 
     }), {
@@ -76,7 +76,7 @@ export const DELETE: APIRoute = async ( { params, request }) => {
     const { slug } = params;
 
     return new Response(JSON.stringify({
-        mothod: 'DELETE',
+        method: 'DELETE',
         slug: slug
 
     }), {
