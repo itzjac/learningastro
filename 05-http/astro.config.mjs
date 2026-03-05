@@ -6,6 +6,8 @@ import { defineConfig } from 'astro/config';
 
 import node from '@astrojs/node';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export const prerender = false;
 
 // https://astro.build/config
@@ -13,7 +15,5 @@ export default defineConfig({
   site: 'https://example.com',
   integrations: [mdx(), sitemap()],
   output: "server",
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: cloudflare(),
 });
